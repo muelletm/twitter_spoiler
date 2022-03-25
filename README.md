@@ -17,6 +17,12 @@ This will create outputs in `./data/tweets`.
 
 ```bash
 export BEARER_TOKEN="..."
-python -m spoiler.cli es --n-tweets=100
+python -m spoiler.cli tweets es --n-tweets=100
 ```
 
+From these we can then extract a list of spoiler texts:
+
+```bash
+export BEARER_TOKEN="..."
+python -m spoiler.cli preprocess
+```
