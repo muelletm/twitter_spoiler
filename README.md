@@ -1,6 +1,6 @@
 # twitter_spoiler
 
-Spoiler detection on twitter
+Code for scraping spoiler examples from Twitter.
 
 # Installation
 
@@ -11,7 +11,12 @@ conda activate spoiler
 
 # Usage
 
+The following command attempts to get 100 n-tweets containing "spoiler:".
+To this end it will scrape tweets contianing "spoiler".
+This will create outputs in `./data/tweets`.
+
 ```bash
 export BEARER_TOKEN="..."
 python -m spoiler.cli es --n-tweets=100
 ```
+

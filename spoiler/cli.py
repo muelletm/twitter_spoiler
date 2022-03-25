@@ -11,10 +11,12 @@ app = typer.Typer()
 
 
 @app.command()
-def tweets(lang: str, n_tweets: int = 100):
+def tweets(
+    lang: str, n_tweets: int = 100, output_path: Path = Path("data", "tweets")
+):
 
     output = Output(max_id=None)
-    for path in Path("data", "tweets").glob("*.jsonl"):
+    for path in output_path.glob("*.jsonl"):
         with path.open("tr") as reader:
             for line in reader:
                 tweet = Tweet(**json.loads(line))
@@ -33,7 +35,7 @@ def tweets(lang: str, n_tweets: int = 100):
         for tweets in get_tweets(
             bearer_token, n_tweets, lang_code=lang, output=output
         ):
-            path = Path("data", "tweets", str(uuid4())).with_suffix(".jsonl")
+            path = output_path.joinpath(str(uuid4())).with_suffix(".jsonl")
             path.parent.mkdir(parents=True, exist_ok=True)
             with path.open("tw") as writer:
                 for t in tweets:
